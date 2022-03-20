@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Application of my knowledge in MERN Stack by building an eccommerce site",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node backend/server",
     "server": "nodemon backend/server",

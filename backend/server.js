@@ -1,10 +1,10 @@
-const express = require('express');
-const products = require('./data/products');
-const app = express();
-const dotenv = require('dotenv');
+import express from 'express';
+import products from './data/products.js';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
+const app = express();
 app.get('/', (req, res) => {
     res.send('Back End API is running')
 })
