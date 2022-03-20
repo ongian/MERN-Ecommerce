@@ -6,7 +6,7 @@ import axios from 'axios';
 import ReviewStar from '../layout/ReviewStar/ReviewStar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import PDPCarousel from '../layout/pdpCarousel/PDPCarousel';
+import PDPCarousel from '../layout/PDPCarousel/PDPCarousel';
 const ProductDetailPage = () => {
 
     const {id} = useParams();
