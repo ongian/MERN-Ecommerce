@@ -1,0 +1,54 @@
+.carousel-container {
+    display: block;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
+    height: 120px;
+    padding: 5px 0;
+}
+.carousel-container svg {
+    position: absolute;
+    top: 30px;
+    font-size: 45px;
+    z-index: 9;
+    opacity: .75;
+    cursor: pointer;
+}
+.carousel-container svg:hover {
+    opacity: 1;
+    transition: all cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.carousel-container svg.svg-inline--fa.fa-angle-left {
+    left: 0;
+}
+.carousel-container svg.svg-inline--fa.fa-angle-right {
+    right: 0;
+}
+.carousel-container .carousel-slides {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all .5s ease;
+}
+
+.carousel-container .carousel-slides .each-slides {
+    max-width: 100px;
+    height: auto;
+    width: auto;
+    margin: 5px;
+    display: block;
+    float: left;
+    border: 1px solid #eceeef;
+    box-sizing: border-box;
+}
+.carousel-container .carousel-slides .each-slides:hover {
+    border: 3px solid #f0ad4e;
+    transition: all cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+.carousel-container .carousel-slides .each-slides img {
+    width: 100%;
+    max-width: 100px;
+}
