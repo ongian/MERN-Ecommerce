@@ -14,7 +14,7 @@ const ProductDetailPage = () => {
 
     useEffect(() => {
         const fetchProduct = async() => {
-            const productsAPI = await axios.get(`/api/product/${id}`);
+            const productsAPI = await axios.get(`/api/products/${id}`);
             const {data} = productsAPI;
             setProduct(data)
             setPreview(data.default)

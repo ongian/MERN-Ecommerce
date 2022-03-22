@@ -14,7 +14,7 @@ const ProductCards = ({product}) => {
                         {product.name.length > 40 ? `${product.name.slice(0, 40)}...` : product.name}
                     </Card.Title>
                 </Link>
-                <Card.Text as='div' className="d-flex align-items-center justify-content-between">{product.listPrice !== 0 && <del><h4>${product.listPrice}</h4></del>}<h4><strong className="text-primary">${product.price}</strong></h4></Card.Text>
+                <Card.Text as='div' className="d-flex align-items-center justify-content-between">{product.listPrice !== 0 && <del><h4>{product.listPrice}</h4></del>}<h4><strong className="text-primary">{product.price}</strong></h4></Card.Text>
                 <Card.Text as='div' className="text-muted reviews d-flex justify-content-between">
                     <ReviewStar key={product._id} rating={product.rating} numOfReview={product.numReviews}/>
                 </Card.Text>
