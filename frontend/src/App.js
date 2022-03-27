@@ -1,7 +1,7 @@
 import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import FrontPage from './components/frontpage/FrontPage';
-import ProductDetailPage from './components/productDetailPage/ProductDetailPage';
+import FrontPage from './components/pages/frontpage/FrontPage';
+import ProductDetailPage from './components/pages/productDetailPage/ProductDetailPage';
 import Header from './components/layout/Header/Header';
 function App() {
   return (

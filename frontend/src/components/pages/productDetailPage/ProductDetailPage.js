@@ -1,35 +1,46 @@
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import React, {useState, useEffect} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import ReviewStar from '../layout/ReviewStar/ReviewStar';
+import ReviewStar from '../../layout/ReviewStar/ReviewStar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import PDPCarousel from '../layout/PDPCarousel/PDPCarousel';
+import PDPCarousel from '../../layout/PDPCarousel/PDPCarousel';
+import { useDispatch, useSelector } from 'react-redux';
+import { singleProduct } from '../../../actions/productActions';
+import { addToCart } from '../../../actions/cartActions';
+import Loader from '../../layout/Loader/Loader';
+import AlertMessage from '../../layout/AlertMessage/AlertMessage';
 const ProductDetailPage = () => {
-
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+    const {product, error, loading} = useSelector(state => state.product);
     const {id} = useParams();
-    const [product, setProduct] = useState(null);
+    //const [product, setProduct] = useState(null);
 
     useEffect(() => {
-        const fetchProduct = async() => {
-            const productsAPI = await axios.get(`/api/products/${id}`);
-            const {data} = productsAPI;
-            setProduct(data)
-            setPreview(data.default)
-        }
-        fetchProduct();
-        
-    }, [id])
+        dispatch(singleProduct(id))
+    }, [id, dispatch])
     //const product = products.filter(sku => sku._id === id)[0];
 
     const [quantity, setQuantity] = useState(1);
 
     const [preview, setPreview] = useState(0);
 
+    const checkout = () => {
+        navigate(`/checkout/${id}?quantity=${quantity}`)
+    }
+
+    const addtocart = () => {
+        dispatch(addToCart(id,quantity));
+        console.log('Added to cart')
+    }
     const onchangeQuantity = (e) => {
-        setQuantity(e.target.value);
+        if(e.target.value > product.countInStock){
+            setQuantity(product.countInStock)
+        } else {
+            setQuantity(e.target.value);
+        }
     }
 
     const onKeyPressQuantity = (e) => {
@@ -66,7 +77,7 @@ const ProductDetailPage = () => {
     
     return (
         <section>
-            {product !== null && <Container>
+            {loading ? <Loader /> : (error ? <AlertMessage>{error}</AlertMessage>: <Container>
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item"><Link to="/">Home</Link></li>
                     <li className="breadcrumb-item active">{product.name}</li>
@@ -116,8 +127,8 @@ const ProductDetailPage = () => {
                                     <p className="text-secondary mb-3">{product.countInStock} Items left</p>
                                 </Col>
                                 <Col md={12} lg={8} className="">
-                                    <button type="button" className="btn btn-primary w-50 px-3"><FontAwesomeIcon icon={faCartShopping} /> ADD TO CART</button>
-                                    <button type="button" className="btn btn-warning w-50 px-3">CHECKOUT</button>
+                                    <button type="button" className="btn btn-primary w-50 px-3" onClick={addtocart}><FontAwesomeIcon icon={faCartShopping} /> ADD TO CART</button>
+                                    <button type="button" className="btn btn-warning w-50 px-3" onClick={checkout}>CHECKOUT</button>
                                 </Col>
                             </Row>
                         </div>
@@ -126,7 +137,7 @@ const ProductDetailPage = () => {
                 <Row>
                     <h3>Reviews</h3>
                 </Row>
-            </Container>}
+            </Container>)}
         </section>
     );
 }

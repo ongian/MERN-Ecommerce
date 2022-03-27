@@ -24,7 +24,11 @@ const PDPCarousel = ({product, previewImg}) => {
     
     useEffect(() => {
         getCarouselWidth();
-        window.addEventListener('resize', getCarouselWidth);
+        window.addEventListener('resize', () => {
+            if(carouselContainer && carouselContainer.current){
+                getCarouselWidth()
+            }
+        });
         setStyle(prevStyle => {
             return {
                 ...prevStyle,
@@ -34,7 +38,6 @@ const PDPCarousel = ({product, previewImg}) => {
                 }
             }
         })
-
     }, [carouselWidth, product.image.length]);
 
     const next = () => {
