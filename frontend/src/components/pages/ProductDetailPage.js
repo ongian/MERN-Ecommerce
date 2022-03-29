@@ -2,15 +2,15 @@ import {Link, useNavigate} from 'react-router-dom'
 import React, {useState, useEffect} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import ReviewStar from '../../layout/ReviewStar/ReviewStar';
+import ReviewStar from '../layout/ReviewStar/ReviewStar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import PDPCarousel from '../../layout/PDPCarousel/PDPCarousel';
+import PDPCarousel from '../layout/PDPCarousel/PDPCarousel';
 import { useDispatch, useSelector } from 'react-redux';
-import { singleProduct } from '../../../actions/productActions';
-import { addToCart } from '../../../actions/cartActions';
-import Loader from '../../layout/Loader/Loader';
-import AlertMessage from '../../layout/AlertMessage/AlertMessage';
+import { singleProduct } from '../../actions/productActions';
+import { addToCart } from '../../actions/cartActions';
+import Loader from '../layout/Loader/Loader';
+import AlertMessage from '../layout/AlertMessage/AlertMessage';
 const ProductDetailPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
@@ -35,6 +35,7 @@ const ProductDetailPage = () => {
         dispatch(addToCart(id,quantity));
         console.log('Added to cart')
     }
+    
     const onchangeQuantity = (e) => {
         if(e.target.value > product.countInStock){
             setQuantity(product.countInStock)

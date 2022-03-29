@@ -22,7 +22,7 @@ const Header = () => {
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                             </NavDropdown>
-                            <Nav.Link href="#link"><FontAwesomeIcon icon={faCartShopping} /> Cart</Nav.Link>
+                            <Nav.Link href="/cart"><FontAwesomeIcon icon={faCartShopping} /> Cart</Nav.Link>
                             <Nav.Link href="#link"><FontAwesomeIcon icon={faMagnifyingGlass} /> Search</Nav.Link>
                             <Nav.Link href="#link"><FontAwesomeIcon icon={faUser} /> Login/Register</Nav.Link>
                         </Nav>

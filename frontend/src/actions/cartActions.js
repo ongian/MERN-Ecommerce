@@ -1,4 +1,4 @@
-import { CART_ADD } from "../actionTypes/actionTypes";
+import { CART_ADD, CART_REMOVE } from "../actionTypes/actionTypes";
 import axios from 'axios';
 
 export const addToCart = (id, qty) => async(dispatch, getState) => {
@@ -17,5 +17,13 @@ export const addToCart = (id, qty) => async(dispatch, getState) => {
 
     // getState() returns the current state of the app
     // getState().cart.cart = get the current state of cart store reducer with cart as initial state in cartReducers.js
+    localStorage.setItem('cart', JSON.stringify(getState().cart.cart))
+}
+
+export const removeToCart = (id) => async(dispatch, getState) => {
+    dispatch({
+        type: CART_REMOVE,
+        payload: id
+    })
     localStorage.setItem('cart', JSON.stringify(getState().cart.cart))
 }

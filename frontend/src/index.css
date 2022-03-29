@@ -54,6 +54,23 @@ svg.svg-inline--fa.fa-star, .svg-inline--fa.fa-star-half-stroke  {
   max-width: 100px;
 }
 
+
+.cart table td a {
+  text-decoration: none;
+}
+.cart .table td, .cart .table th {
+  padding: 0.75rem;
+  vertical-align: middle;
+}
+.cart table tr td select.form-control {
+  text-align: center;
+  margin: auto;
+}
+.cart table tr td code {
+  display: block;
+  text-align: center;
+  cursor: pointer;
+}
 @media(min-width: 992px){
   .product .card-img-top {
     max-height: 175px;
