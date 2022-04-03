@@ -54,7 +54,23 @@ svg.svg-inline--fa.fa-star, .svg-inline--fa.fa-star-half-stroke  {
   max-width: 100px;
 }
 
+.cart select.form-control {
+  padding: 5px!important;
+  width: 40px;
+  text-align: center;
+  border: 1px solid #55595c;
+  margin: auto;
+}
+.cart .col-md-8 .row {
+  background: #e1e1e1;
+  border-radius: 5px;
+  --bs-gutter-x: 0rem;
+  --bs-gutter-y: 0rem;
+}
 
+.cart .col-md-8 .row a {
+  text-decoration: none;
+}
 .cart table td a {
   text-decoration: none;
 }
@@ -74,5 +90,10 @@ svg.svg-inline--fa.fa-star, .svg-inline--fa.fa-star-half-stroke  {
 @media(min-width: 992px){
   .product .card-img-top {
     max-height: 175px;
+  }
+  .cart .col-md-8 .row img.img-fluid {
+    border-radius: 75px;
+    width: 75px;
+    height: 75px;
   }
 }

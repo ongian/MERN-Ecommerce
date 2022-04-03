@@ -11,3 +11,7 @@ export const PRODUCT_SUCCESS = 'PRODUCT_SUCCESS';
 //CART
 export const CART_REMOVE = 'CART_REMOVE';
 export const CART_ADD = 'CART_ADD';
+
+//CHECKOUT
+export const ADD_TO_CHECKOUT = 'ADD_TO_CHECKOUT';
+export const REMOVE_TO_CHECKOUT = 'REMOVE_TO_CHECKOUT';
