@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import {Container, Row, Col, Image, Form, Button, Card} from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,6 +6,7 @@ import { addToCart, removeToCart } from '../../actions/cartActions';
 import AlertMessage from '../layout/AlertMessage/AlertMessage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { MODAL } from '../../actionTypes/actionTypes';
 const Cart = () => {
     const {cart} = useSelector(state => state.cart);
 
@@ -20,27 +21,13 @@ const Cart = () => {
         dispatch(removeToCart(id))
     }
 
-    const onCheck = (e) => {
-        if(e.target.checked){
-            const id = e.target.value;
-            console.log(e.target.value)
-        } else {
-            console.log('Removed - ', e.target.value)
-        }
+    const checkoutSKU = () => {
+        dispatch({
+            type: MODAL
+        })
     }
-    // const addToCheckout = (id, name, qty, price) => {
-    //     setCOItem((prev) => {
-    //         return [
-    //             ...prev,
-    //             {
-    //                 id,
-    //                 name,
-    //                 qty,
-    //                 price
-    //             }
-    //         ]
-    //     })
-    // }
+
+
     return (
         <section className="cart">
             <Container className="px-2">
@@ -49,7 +36,7 @@ const Cart = () => {
                         <>
                             <Col md={8}>
                             {cart.map((c) => (
-                                <Row className="align-items-center p-1 mb-1">
+                                <Row className="align-items-center p-1 mb-1" key={c.product}>
                                     <Col xs={12} md={2} className="p-2">
                                         <Image fluid src={c.image} alt={c.name} />
                                     </Col>
@@ -84,13 +71,13 @@ const Cart = () => {
                                         {cart.map((c) => (<li className="list-group-item" key={c.product}>
                                             <p className="mb-0"><small>{c.name}</small></p>
                                             <div className="flex align-items-center justify-content-between">
-                                                <div className="w-50 d-inline-block">{c.price} x {c.qty}</div>
-                                                <div className="w-50 d-inline-block text-end"><strong>{(c.price * c.qty).toFixed(2)}</strong></div>
+                                                <div className="w-50 d-inline-block"><small>{c.price} x {c.qty}</small></div>
+                                                <div className="w-50 d-inline-block text-end"><small><strong>{(c.price * c.qty).toFixed(2)}</strong></small></div>
                                             </div>
                                         </li>))}
                                     </ul>
                                     <h4 className="text-end my-2">Total: {(cart.reduce((a, b) => a + (b.qty * b.price), 0)).toFixed(2)}</h4>
-                                    <Button>Proceed to Checkout</Button>
+                                    <Button onClick={checkoutSKU}>Proceed to Checkout</Button>
                                 </Card>
                             </Col>
                         </>

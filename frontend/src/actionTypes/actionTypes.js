@@ -15,3 +15,12 @@ export const CART_ADD = 'CART_ADD';
 //CHECKOUT
 export const ADD_TO_CHECKOUT = 'ADD_TO_CHECKOUT';
 export const REMOVE_TO_CHECKOUT = 'REMOVE_TO_CHECKOUT';
+
+//LOGIN
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGOUT = 'LOGOUT';
+
+//MODAL
+export const MODAL = 'MODAL';

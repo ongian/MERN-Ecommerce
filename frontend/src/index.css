@@ -71,21 +71,11 @@ svg.svg-inline--fa.fa-star, .svg-inline--fa.fa-star-half-stroke  {
 .cart .col-md-8 .row a {
   text-decoration: none;
 }
-.cart table td a {
-  text-decoration: none;
-}
-.cart .table td, .cart .table th {
-  padding: 0.75rem;
-  vertical-align: middle;
-}
-.cart table tr td select.form-control {
-  text-align: center;
-  margin: auto;
-}
-.cart table tr td code {
-  display: block;
-  text-align: center;
+.cart svg.svg-inline--fa.fa-trash-can {
   cursor: pointer;
+}
+.cart svg.svg-inline--fa.fa-trash-can:hover {
+  color: #d9534f;
 }
 @media(min-width: 992px){
   .product .card-img-top {
@@ -95,5 +85,6 @@ svg.svg-inline--fa.fa-star, .svg-inline--fa.fa-star-half-stroke  {
     border-radius: 75px;
     width: 75px;
     height: 75px;
+    border: 1px solid #939393;
   }
 }
