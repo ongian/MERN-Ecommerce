@@ -3,9 +3,10 @@ import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {useSelector, useDispatch} from 'react-redux';
 import { faHouseChimney, faLaptopCode, faCartShopping, faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
-import LoginModal from '../LoginModal/LoginModal';
+import ModalForms from '../ModalForm/ModalForms';
 import './Header.css';
 import { MODAL } from '../../../actionTypes/actionTypes';
+import { logout } from '../../../actions/userAction';
 const Header = () => {
     const dispatch = useDispatch();
     const {userData} = useSelector((state) => state.login)
@@ -13,15 +14,23 @@ const Header = () => {
     const modal = useSelector((state) => state.modal);
 
     console.log(userData)
-    const signIn = () => {
+    const signInHandler = () => {
         dispatch({type: MODAL})
     }
     const closeModal = () => {
         dispatch({type: MODAL})
     }
+    const logoutHandler = () => {
+        dispatch(logout())
+    }
     return ( 
         <header>
-            <LoginModal show={modal} closemodal={() => closeModal()}/>
+            <ModalForms show={modal} closemodal={() => closeModal()}/>
+            {userData && <div className="w-100 fixed-top text-end greetings">
+                <Container>
+                    <small class="text-muted">Welcome {userData.name},</small>
+                </Container>
+            </div>}
             <Navbar bg="primary" expand="lg" variant="dark" fixed="top" className="mb-5">
                 <Container>
                     <Navbar.Brand href="/"><FontAwesomeIcon icon={faHouseChimney} /> Matt.io</Navbar.Brand>
@@ -38,12 +47,12 @@ const Header = () => {
                                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                             </NavDropdown>
                             <Nav.Link href="/cart">{cart.length > 0 && <span className="cart-notify">{cart.length}</span>}<FontAwesomeIcon icon={faCartShopping} /> Cart</Nav.Link>
-                            <Nav.Link href="#link"><FontAwesomeIcon icon={faMagnifyingGlass} /> Search</Nav.Link>
-                            {userData ? <NavDropdown title="My Account" id="basic-nav-dropdown">
+                            <Nav.Link href="#search"><FontAwesomeIcon icon={faMagnifyingGlass} /> Search</Nav.Link>
+                            {userData ? <NavDropdown title="My Account" id="basic-nav-dropdown" className="me-0">
                                 <NavDropdown.Item href="#action/3.1">Orders</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
-                            </NavDropdown> : <Nav.Link href="#link" onClick={() => signIn()}><FontAwesomeIcon icon={faUser} /> Login/Register</Nav.Link>}
+                                <NavDropdown.Item href="#" onClick={() => logoutHandler()}>Logout</NavDropdown.Item>
+                            </NavDropdown> : <Nav.Link href="#link" onClick={() => signInHandler()}><FontAwesomeIcon icon={faUser} /> Login/Register</Nav.Link>}
                             
                         </Nav>
                     </Navbar.Collapse>

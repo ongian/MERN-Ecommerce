@@ -1,6 +1,10 @@
 header {
     margin-bottom: 100px;
 }
+header .greetings {
+    z-index: 1031;
+    top: 0;
+}
 header nav a.nav-link {
     position: relative;
 }

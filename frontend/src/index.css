@@ -77,6 +77,25 @@ svg.svg-inline--fa.fa-star, .svg-inline--fa.fa-star-half-stroke  {
 .cart svg.svg-inline--fa.fa-trash-can:hover {
   color: #d9534f;
 }
+
+
+.modal form .form-control {
+  border: 1px solid #c3c3c3;
+}
+span.form-link {
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+}
+span.form-link:hover {
+  color: #0e0e0e;
+}
+svg.svg-inline--fa.fa-rectangle-xmark {
+  position: absolute;
+  top: 7px;
+  right: 8px;
+  font-size: 20px;
+}
 @media(min-width: 992px){
   .product .card-img-top {
     max-height: 175px;
