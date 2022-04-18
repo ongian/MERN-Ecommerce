@@ -33,6 +33,10 @@ export const register = (name, email, password) => async(dispatch) => {
             type: REGISTER_SUCCESS,
             payload: data
         })
+        dispatch({
+            type: LOGIN_SUCCESS,
+            payload: data
+        })
         dispatch({type: MODAL})
         localStorage.setItem('userData', JSON.stringify(data));
         

@@ -3,14 +3,19 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import {productListReducers, singleProduct} from './reducers/productReducers';
 import { addToCart } from './reducers/cartReducers';
-import { loginReducer } from './reducers/userReducers';
+import { loginReducer, registerReducer } from './reducers/userReducers';
 import { popupModal } from './reducers/auxillary';
+import {loginFormReducer, registerFormReducer} from './reducers/formValidationReducer';
+
 const reducers = combineReducers({
     productList: productListReducers,
     product: singleProduct,
     cart: addToCart,
     login: loginReducer,
-    modal: popupModal
+    register: registerReducer,
+    modal: popupModal,
+    loginValidation: loginFormReducer,
+    registerValidation: registerFormReducer
 });
 
 const cartLocalStorage = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];

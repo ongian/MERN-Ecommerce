@@ -34,7 +34,7 @@ const Cart = () => {
                 <Row>
                     {cart.length ? (
                         <>
-                            <Col md={8}>
+                            <Col md={12} lg={8}>
                             {cart.map((c) => (
                                 <Row className="align-items-center p-1 mb-1" key={c.product}>
                                     <Col xs={12} md={2} className="p-2">
@@ -55,16 +55,16 @@ const Cart = () => {
                                             ))}
                                         </Form.Control>
                                     </Col>
-                                    <Col xs={6} md={3}>
-                                        <small>Price: {c.price}</small>
-                                        <h5><small>Total: {(c.price * c.qty).toFixed(2)}</small></h5>
-                                    </Col>
-                                    <Col xs={3} md={1} className="text-center">
+                                    <Col xs={9} md={4} className="d-flex align-items-center justify-content-around">
+                                        <div className='prices'>
+                                            <small>Price: {c.price}</small>
+                                            <h5><small>Total: {(c.price * c.qty).toFixed(2)}</small></h5>
+                                        </div>
                                         <FontAwesomeIcon icon={faTrashCan} onClick={() => removeOnCart(c.product)} />
                                     </Col>
                                 </Row>))}
                             </Col>
-                            <Col md={4} className="my-sm-2 my-md-0">
+                            <Col md={12} lg={4} className="my-sm-2 my-md-0">
                                 <Card className="p-2">
                                     <h4>Order Summary:</h4>
                                     <ul className="list-group list-group-flush">

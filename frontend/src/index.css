@@ -15,6 +15,10 @@ code {
 svg.svg-inline--fa.fa-star, .svg-inline--fa.fa-star-half-stroke  {
   color: #e94000;
 }
+.rounded.product.card:hover {
+  box-shadow: inset 0px 0px 5px #d9d9d9;
+  transition: all .75s ease;
+}
 .product a {
   text-decoration: none;
 }
@@ -61,14 +65,14 @@ svg.svg-inline--fa.fa-star, .svg-inline--fa.fa-star-half-stroke  {
   border: 1px solid #55595c;
   margin: auto;
 }
-.cart .col-md-8 .row {
+.cart .col-lg-8 .row {
   background: #e1e1e1;
   border-radius: 5px;
   --bs-gutter-x: 0rem;
   --bs-gutter-y: 0rem;
 }
 
-.cart .col-md-8 .row a {
+.cart .col-lg-8 .row a {
   text-decoration: none;
 }
 .cart svg.svg-inline--fa.fa-trash-can {
@@ -78,7 +82,14 @@ svg.svg-inline--fa.fa-star, .svg-inline--fa.fa-star-half-stroke  {
   color: #d9534f;
 }
 
-
+span.checkPass {
+  top: 15px;
+  bottom: 0;
+  right: 15px;
+  height: 25px;
+  line-height: inherit;
+  font-size: 18px;
+}
 .modal form .form-control {
   border: 1px solid #c3c3c3;
 }
@@ -100,7 +111,9 @@ svg.svg-inline--fa.fa-rectangle-xmark {
   .product .card-img-top {
     max-height: 175px;
   }
-  .cart .col-md-8 .row img.img-fluid {
+}
+@media(min-width: 767px){
+  .cart .col-lg-8 .row img.img-fluid {
     border-radius: 75px;
     width: 75px;
     height: 75px;

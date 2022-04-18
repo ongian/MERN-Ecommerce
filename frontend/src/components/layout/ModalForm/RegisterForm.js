@@ -3,16 +3,25 @@ import {Form, Button, Container} from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../../actions/userAction';
 import AlertMessage from '../AlertMessage/AlertMessage';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { validateRegConfirmPass, validateRegEmail, validateRegUser, validateRegPass } from '../../../actions/formValidationAction';
 const RegisterForm = ({modalStatus}) => {
 
     const dispatch = useDispatch();
-    const {loading, error} = useSelector(state => state.login)
+    const {loading, error} = useSelector(state => state.register);
+    const regForm = useSelector(state => state.registerValidation);
+    const [passType, setPassType] = useState({
+        password: 'password',
+        confirmPassword: 'password'
+    })
     const [userLogin, setUserLogin] = useState({
         name: '',
         email: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
     })
-    const {name, email, password} = userLogin;
+    const {name, email, password, confirmPassword} = userLogin;
 
     useEffect(() => {
         if(modalStatus === false) {
@@ -20,7 +29,8 @@ const RegisterForm = ({modalStatus}) => {
                 return {
                     name: '',
                     email: '',
-                    password: ''
+                    password: '',
+                    confirmPassword: ''
                 }
             });
         }
@@ -32,13 +42,25 @@ const RegisterForm = ({modalStatus}) => {
                 [e.target.name]: e.target.value
             }
         })
-        console.log(userLogin)
     }
-    
+    const showPassword = (field) => {
+        setPassType((state) => {
+            return {
+                ...state,
+                [field]: state[field] === 'password' ? 'text' : 'password'
+            }
+        })
+    }
     const onRegister = (e) => {
-        e.preventDefault()
-        dispatch(register(name, email, password));
-        console.log(userLogin)
+        e.preventDefault();
+        if(regForm.username.valid && regForm.email.valid && regForm.password.valid && regForm.confirmPassword.valid){
+            dispatch(register(name, email, password));
+        } else {
+            dispatch(validateRegUser(name))
+            dispatch(validateRegEmail(email))
+            dispatch(validateRegPass(password))
+            dispatch(validateRegConfirmPass(password, confirmPassword))
+        }
     }
 
     return ( <Form className="px-3">
@@ -50,32 +72,56 @@ const RegisterForm = ({modalStatus}) => {
                             name="name" 
                             type="text" 
                             placeholder="Username" 
-                            className="form-control"
+                            className={`form-control ${regForm.username.error && 'is-invalid border-danger'}`}
                             value={name} 
                             onChange={(e) => onChange(e)}
+                            onBlur={(e) => dispatch(validateRegUser(e.target.value))}
                         />
+                        {regForm.username.error && <div className="d-block invalid-feedback">{regForm.username.error}</div>}
                     </div>
                     <div className="form-group">
                         <input 
                             name="email" 
                             type="email" 
                             placeholder="Email Address" 
-                            className="form-control"
+                            className={`form-control ${regForm.email.error && 'is-invalid border-danger'}`}
                             value={email} 
                             onChange={(e) => onChange(e)}
+                            onBlur={(e) => dispatch(validateRegEmail(e.target.value))}
                         />
+                        {regForm.email.error && <div className="d-block invalid-feedback">{regForm.email.error}</div>}
                     </div>
-                    <div className="form-group py-2">
+                    <div className="form-group py-2 position-relative">
                         <input 
                             name="password" 
-                            type="password"  
+                            type={passType.password}  
                             placeholder="Enter Password" 
-                            className="form-control"
+                            className={`form-control ${regForm.password.error && 'border-danger'}`}
                             value={password}
-                            onChange={(e) => onChange(e)} 
+                            onChange={(e) => onChange(e)}
+                            onBlur={(e) => dispatch(validateRegPass(e.target.value))}
                         />
+                        {regForm.password.error && <div className="d-block invalid-feedback">{regForm.password.error}</div>}
+                        <span className="checkPass position-absolute">
+                            {passType.password === 'text' ? <FontAwesomeIcon icon={faEye} onClick={() => showPassword('password')} /> : <FontAwesomeIcon icon={faEyeSlash} onClick={() => showPassword('password')} />}
+                        </span>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group position-relative">
+                        <input 
+                            name="confirmPassword" 
+                            type={passType.confirmPassword}  
+                            placeholder="Confirm Password" 
+                            className={`form-control ${regForm.confirmPassword.error && 'border-danger'}`}
+                            value={confirmPassword}
+                            onChange={(e) => onChange(e)}
+                            onBlur={(e) => dispatch(validateRegConfirmPass(password, e.target.value))}
+                        />
+                        {regForm.confirmPassword.error && <div className="d-block invalid-feedback">{regForm.confirmPassword.error}</div>}
+                        <span className="checkPass position-absolute">
+                            {passType.confirmPassword === 'text' ? <FontAwesomeIcon icon={faEye} onClick={() => showPassword('confirmPassword')} /> : <FontAwesomeIcon icon={faEyeSlash} onClick={() => showPassword('confirmPassword')} />}
+                        </span>
+                    </div>
+                    <div className="form-group py-2">
                         <Button variant="primary" type="submit" onClick={onRegister}>{loading ? 'Loading...' : 'Register'}</Button>
                     </div>
                 </Container>
