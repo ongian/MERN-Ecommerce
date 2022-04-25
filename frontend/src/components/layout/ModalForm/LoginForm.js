@@ -6,6 +6,7 @@ import { validateLoginEmail, validateLoginPassword } from '../../../actions/form
 import AlertMessage from '../AlertMessage/AlertMessage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { LOGIN_FAIL } from '../../../actionTypes/actionTypes';
 
 const LoginForm = ({modalStatus}) => {
 
@@ -27,8 +28,12 @@ const LoginForm = ({modalStatus}) => {
                     password: ''
                 }
             });
+            dispatch({
+                type: LOGIN_FAIL,
+                error: ''
+            })
         }
-    }, [modalStatus]);
+    }, [modalStatus, dispatch]);
 
     const onChange = (e) => {
         setUserLogin((state) => {

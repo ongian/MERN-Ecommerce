@@ -36,7 +36,7 @@ const Cart = () => {
                         <>
                             <Col md={12} lg={8}>
                             {cart.map((c) => (
-                                <Row className="align-items-center p-1 mb-1" key={c.product}>
+                                <Row className="align-items-center p-1 mb-3" key={c.product}>
                                     <Col xs={12} md={2} className="p-2">
                                         <Image fluid src={c.image} alt={c.name} />
                                     </Col>

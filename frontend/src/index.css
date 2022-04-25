@@ -6,7 +6,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -119,4 +118,10 @@ svg.svg-inline--fa.fa-rectangle-xmark {
     height: 75px;
     border: 1px solid #939393;
   }
+}
+
+/* Check Out */
+
+.progress-icons svg {
+  font-size: 48px;
 }

@@ -135,7 +135,7 @@ const ProductDetailPage = () => {
                         </div>
                     </Col>
                 </Row>
-                <Row>
+                <Row className="py-4">
                     <h3>Reviews</h3>
                 </Row>
             </Container>)}

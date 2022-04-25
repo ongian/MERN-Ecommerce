@@ -17,9 +17,8 @@ const ProductContainer = ({productTitle, numOfSKU, typeOfSKU}) => {
 
     const skus = products && products.slice(0, numOfSKU);
 
-    return (<section>
+    return (
         <Container>
-            
             {loading ? <Loader /> : (error ? <AlertMessage>{error}</AlertMessage> : <>
                 <h2>{productTitle}</h2>
                 <Row>
@@ -29,7 +28,7 @@ const ProductContainer = ({productTitle, numOfSKU, typeOfSKU}) => {
                 </Row>
             </>)}
         </Container>
-    </section>);
+    );
 }
  
 export default ProductContainer;

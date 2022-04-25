@@ -5,7 +5,8 @@ import ProductDetailPage from './components/pages/ProductDetailPage';
 import Profile from './components/pages/Profile';
 import Cart from './components/pages/Cart';
 import Header from './components/layout/Header/Header';
- import PrivateRoutes from './utils/PrivateRoutes';
+import Checkout from './components/pages/Checkout';
+import PrivateRoutes from './utils/PrivateRoutes';
 function App() {
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
           <Route path='/product/:productname/:id' element={<ProductDetailPage />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/profile' element={<PrivateRoutes><Profile /></PrivateRoutes>} />
+          <Route path='/checkout' element={<PrivateRoutes><Checkout /></PrivateRoutes>} />
           <Route path='/' element={<FrontPage />} exact />
         </Routes>
       </BrowserRouter>
